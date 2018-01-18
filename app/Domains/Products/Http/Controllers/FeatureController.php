@@ -2,8 +2,8 @@
 
 namespace EcommerceMobly\Domains\Products\Http\Controllers;
 
+use EcommerceMobly\Domains\Products\Contracts\FeatureServiceContract;
 use EcommerceMobly\Support\Http\Controllers\ApiController;
-use EcommerceMobly\Domains\Products\Contracts\FeatureRepositoryContract;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use EcommerceMobly\Domains\Products\Http\Resources\FeatureResource;
@@ -17,9 +17,9 @@ class FeatureController extends ApiController
 
     /**
      * FeatureController constructor.
-     * @param FeatureRepositoryContract $service
+     * @param FeatureServiceContract $service
      */
-    public function __construct(FeatureRepositoryContract $service)
+    public function __construct(FeatureServiceContract $service)
     {
         $this->service = $service;
     }
