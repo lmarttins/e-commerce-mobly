@@ -168,6 +168,7 @@ return [
          * Domain Service Providers...
          */
         EcommerceMobly\Domains\Users\Providers\DomainServiceProvider::class,
+        EcommerceMobly\Domains\Products\Providers\DomainServiceProvider::class,
 
         /*
          * Application Service Providers...
