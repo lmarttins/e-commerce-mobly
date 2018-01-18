@@ -4,6 +4,11 @@ namespace EcommerceMobly\Support\Persistence;
 
 abstract class Repository
 {
+    /**
+     * Model instance class
+     *
+     * @var string $modelClass
+     */
     protected $modelClass;
 
     /**
@@ -37,13 +42,33 @@ abstract class Repository
         return app()->make($this->modelClass)->newQuery();
     }
 
+    /**
+     * Create record in database.
+     *
+     * @param  array $data
+     * @return \Illuminate\Database\Eloquent\Model
+     */
     public function create(array $data = [])
     {
         return app()->make($this->modelClass)->create($data);
     }
 
-    public function update(array $data = [], $id)
+    /**
+     * Update record in database.
+     *
+     * @param  string|int $id
+     * @param  array $data
+     * @return \Illuminate\Database\Eloquent\Model
+     */
+    public function update($id, array $data = [])
     {
-        return app()->make($this->modelClass)->update($data, $id);
+        $model = app()->make($this->modelClass)->find($id);
+
+        return $model->update($data);
+    }
+
+    public function paginate()
+    {
+        return app()->make($this->modelClass)->paginate();
     }
 }

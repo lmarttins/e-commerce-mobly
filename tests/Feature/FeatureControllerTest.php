@@ -35,4 +35,17 @@ class FeatureControllerTest extends TestCase
                 ]
             ]);
     }
+
+    public function testUpdateSuccess()
+    {
+        $response = $this->json('PUT', '/api/v1/features/1', [
+            'name' => 'Memória de 60GB'
+        ]);
+
+        $response
+            ->assertStatus(HttpStatus::HTTP_OK)
+            ->assertJson([
+                'message' => 'Característica do produto atualizada com sucesso!'
+            ]);
+    }
 }

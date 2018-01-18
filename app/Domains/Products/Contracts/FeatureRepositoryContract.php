@@ -19,5 +19,7 @@ interface FeatureRepositoryContract
      * @param  $id
      * @return mixed
      */
-    public function update(array $data = [], $id);
+    public function update($id, array $data = []);
+
+    public function paginate();
 }

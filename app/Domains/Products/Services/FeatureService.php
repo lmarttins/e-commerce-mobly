@@ -18,13 +18,30 @@ class FeatureService implements FeatureServiceContract
     }
 
     /**
-     * Service create Particular record.
+     * Service create Feature record.
      *
-     * @param array $data
+     * @param  array $data
      * @return mixed
      */
     public function create(array $data = [])
     {
         return $this->repository->create($data);
+    }
+
+    /**
+     * Service update Feature record.
+     *
+     * @param  $id
+     * @param  array $data
+     * @return mixed
+     */
+    public function update($id, array $data = [])
+    {
+        return $this->repository->update($id, $data);
+    }
+
+    public function paginate()
+    {
+        return $this->repository->paginate();
     }
 }

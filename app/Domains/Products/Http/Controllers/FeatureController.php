@@ -6,6 +6,7 @@ use EcommerceMobly\Support\Http\Controllers\ApiController;
 use EcommerceMobly\Domains\Products\Contracts\FeatureRepositoryContract;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
+use EcommerceMobly\Domains\Products\Http\Resources\FeatureResource;
 
 class FeatureController extends ApiController
 {
@@ -14,13 +15,27 @@ class FeatureController extends ApiController
      */
     private $service;
 
+    /**
+     * FeatureController constructor.
+     * @param FeatureRepositoryContract $service
+     */
     public function __construct(FeatureRepositoryContract $service)
     {
         $this->service = $service;
     }
 
     /**
-     * Store resource Feature.
+     * List resources.
+     *
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     */
+    public function index()
+    {
+        return FeatureResource::collection($this->service->paginate());
+    }
+
+    /**
+     * Store resource.
      *
      * @param  Request $request
      * @return mixed
@@ -46,6 +61,38 @@ class FeatureController extends ApiController
         } catch (\Exception $e) {
             return $this->response()->withError(
                 'Ocorreu um erro ao criar a característica.'
+            );
+        }
+    }
+
+    /**
+     * Update resource.
+     *
+     * @param  $id
+     * @param  Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function update($id, Request $request)
+    {
+        try {
+            $this->validate($request, [
+                'name' => 'required'
+            ],[
+                'name.required' => 'Nome obrigatório.'
+            ]);
+
+            $this->service->update($id, $request->all());
+
+            return $this->response()->withSuccess(
+                'Característica do produto atualizada com sucesso!'
+            );
+        } catch (ValidationException $e) {
+            return $this->response()->withUnprocessableEntity(
+                $e->errors()
+            );
+        } catch (\Exception $e) {
+            return $this->response()->withError(
+                'Ocorreu um erro ao atualizar a característica.'
             );
         }
     }
