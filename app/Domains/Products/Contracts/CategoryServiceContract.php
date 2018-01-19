@@ -22,9 +22,17 @@ interface CategoryServiceContract
     public function update($id, array $data = []);
 
     /**
-     * Create pagination.
+     * Service create pagination.
      *
      * @return mixed
      */
     public function paginate();
+
+    /**
+     * Service find record.
+     *
+     * @param  string|int $id
+     * @return \EcommerceMobly\Domains\Products\Models\Category
+     */
+    public function find($id);
 }

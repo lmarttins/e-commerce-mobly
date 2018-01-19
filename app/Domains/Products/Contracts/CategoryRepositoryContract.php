@@ -27,4 +27,12 @@ interface CategoryRepositoryContract
      * @return mixed
      */
     public function paginate();
+
+    /**
+     * Find record.
+     *
+     * @param  string|int $id
+     * @return \EcommerceMobly\Domains\Products\Models\Category
+     */
+    public function find($id);
 }

@@ -65,4 +65,19 @@ class CategoryControllerTest extends TestCase
                 ]
             ]);
     }
+
+    public function testShowSuccess()
+    {
+        $response = $this->json('GET', '/api/v1/categories/1');
+
+        $response
+            ->assertStatus(HttpStatus::HTTP_OK)
+            ->assertJson([
+                'data' => [
+                    'id' => 1,
+                    'name' => 'Celular Smartphone',
+                    'description' => 'Todos os tipos de celular'
+                ]
+            ]);
+    }
 }

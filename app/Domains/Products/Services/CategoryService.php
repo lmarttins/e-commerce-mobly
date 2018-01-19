@@ -49,4 +49,15 @@ class CategoryService implements CategoryServiceContract
     {
         return $this->repository->paginate();
     }
+
+    /**
+     * Service find Category.
+     *
+     * @param int|string $id
+     * @return \EcommerceMobly\Domains\Products\Models\Category
+     */
+    public function find($id)
+    {
+        return $this->repository->find($id);
+    }
 }

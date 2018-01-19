@@ -96,4 +96,19 @@ class FeatureController extends ApiController
             );
         }
     }
+
+    /**
+     * @param  string|int $id
+     * @return FeatureResource|\Symfony\Component\HttpFoundation\Response
+     */
+    public function show($id)
+    {
+        try {
+            return new FeatureResource($this->service->find($id));
+        } catch (\Exception $e) {
+            return $this->response()->withNotFound(
+                'Não foi possível encontrar a característica.'
+            );
+        }
+    }
 }

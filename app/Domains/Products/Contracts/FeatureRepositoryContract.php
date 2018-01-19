@@ -27,4 +27,12 @@ interface FeatureRepositoryContract
      * @return mixed
      */
     public function paginate();
+
+    /**
+     * Find record.
+     *
+     * @param  string|int $id
+     * @return \EcommerceMobly\Domains\Products\Models\Feature
+     */
+    public function find($id);
 }

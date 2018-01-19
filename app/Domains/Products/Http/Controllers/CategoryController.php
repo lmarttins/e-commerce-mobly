@@ -4,7 +4,6 @@ namespace EcommerceMobly\Domains\Products\Http\Controllers;
 
 use EcommerceMobly\Domains\Products\Contracts\CategoryServiceContract;
 use EcommerceMobly\Domains\Products\Http\Resources\CategoryResource;
-use EcommerceMobly\Domains\Products\Models\Category;
 use EcommerceMobly\Support\Http\Controllers\ApiController;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
@@ -94,6 +93,21 @@ class CategoryController extends ApiController
         } catch (\Exception $e) {
             return $this->response()->withError(
                 'Ocorreu um erro ao atualizar a categoria.'
+            );
+        }
+    }
+
+    /**
+     * @param  string|int $id
+     * @return CategoryResource|\Symfony\Component\HttpFoundation\Response
+     */
+    public function show($id)
+    {
+        try {
+            return new CategoryResource($this->service->find($id));
+        } catch (\Exception $e) {
+            return $this->response()->withNotFound(
+                'Não foi possível encontrar a categoria.'
             );
         }
     }

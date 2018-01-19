@@ -65,4 +65,19 @@ class FeatureControllerTest extends TestCase
                 ]
             ]);
     }
+
+    public function testShowSuccess()
+    {
+        $response = $this->json('GET', '/api/v1/features/1');
+
+        $response
+            ->assertStatus(HttpStatus::HTTP_OK)
+            ->assertJson([
+                'data' => [
+                    'id' => 1,
+                    'name' => 'Memória de 60GB',
+                    'description' => 'Memória de smartphone'
+                ]
+            ]);
+    }
 }
