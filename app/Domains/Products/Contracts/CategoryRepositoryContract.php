@@ -2,10 +2,10 @@
 
 namespace EcommerceMobly\Domains\Products\Contracts;
 
-interface FeatureRepositoryContract
+interface CategoryRepositoryContract
 {
     /**
-     * Create Feature record.
+     * Create Category record.
      *
      * @param  array $data
      * @return mixed
@@ -13,7 +13,7 @@ interface FeatureRepositoryContract
     public function create(array $data = []);
 
     /**
-     * Update Feature record.
+     * Update Category record.
      *
      * @param  array $data
      * @param  $id

@@ -2,24 +2,25 @@
 
 namespace EcommerceMobly\Domains\Products\Http\Controllers;
 
-use EcommerceMobly\Domains\Products\Contracts\FeatureServiceContract;
+use EcommerceMobly\Domains\Products\Contracts\CategoryServiceContract;
+use EcommerceMobly\Domains\Products\Http\Resources\CategoryResource;
+use EcommerceMobly\Domains\Products\Models\Category;
 use EcommerceMobly\Support\Http\Controllers\ApiController;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
-use EcommerceMobly\Domains\Products\Http\Resources\FeatureResource;
 
-class FeatureController extends ApiController
+class CategoryController extends ApiController
 {
     /**
-     * @var FeatureServiceContract
+     * @var CategoryServiceContract
      */
     private $service;
 
     /**
-     * FeatureController constructor.
-     * @param FeatureServiceContract $service
+     * CategoryController constructor.
+     * @param CategoryServiceContract $service
      */
-    public function __construct(FeatureServiceContract $service)
+    public function __construct(CategoryServiceContract $service)
     {
         $this->service = $service;
     }
@@ -31,7 +32,7 @@ class FeatureController extends ApiController
      */
     public function index()
     {
-        return FeatureResource::collection($this->service->paginate());
+        return CategoryResource::collection($this->service->paginate());
     }
 
     /**
@@ -52,7 +53,7 @@ class FeatureController extends ApiController
             $this->service->create($request->all());
 
             return $this->response()->withSuccess(
-                'Característica do produto criada com sucesso!'
+                'Categoria criada com sucesso!'
             );
         } catch (ValidationException $e) {
             return $this->response()->withUnprocessableEntity(
@@ -60,7 +61,7 @@ class FeatureController extends ApiController
             );
         } catch (\Exception $e) {
             return $this->response()->withError(
-                'Ocorreu um erro ao criar a característica.'
+                'Ocorreu um erro ao criar a categoria.'
             );
         }
     }
@@ -84,7 +85,7 @@ class FeatureController extends ApiController
             $this->service->update($id, $request->all());
 
             return $this->response()->withSuccess(
-                'Característica do produto atualizada com sucesso!'
+                'Categoria atualizada com sucesso!'
             );
         } catch (ValidationException $e) {
             return $this->response()->withUnprocessableEntity(
@@ -92,7 +93,7 @@ class FeatureController extends ApiController
             );
         } catch (\Exception $e) {
             return $this->response()->withError(
-                'Ocorreu um erro ao atualizar a característica.'
+                'Ocorreu um erro ao atualizar a categoria.'
             );
         }
     }

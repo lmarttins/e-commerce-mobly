@@ -4,7 +4,7 @@ namespace EcommerceMobly\Domains\Products\Http\Resources;
 
 use Illuminate\Http\Resources\Json\Resource;
 
-class FeatureResource extends Resource
+class CategoryResource extends Resource
 {
     /**
      * Transform the resource collection into an array.

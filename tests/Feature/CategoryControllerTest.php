@@ -5,25 +5,25 @@ namespace Tests\Feature;
 use Tests\TestCase;
 use Symfony\Component\HttpFoundation\Response as HttpStatus;
 
-class FeatureControllerTest extends TestCase
+class CategoryControllerTest extends TestCase
 {
     public function testStoreSuccess()
     {
-        $response = $this->json('POST', '/api/v1/features', [
-            'name' => 'Memória de 4GB',
-            'description' => 'Memória de smartphone'
+        $response = $this->json('POST', '/api/v1/categories', [
+            'name' => 'Celular',
+            'description' => 'Todos os tipos de celular'
         ]);
 
         $response
             ->assertStatus(HttpStatus::HTTP_OK)
             ->assertJson([
-                'message' => 'Característica do produto criada com sucesso!'
+                'message' => 'Categoria criada com sucesso!'
             ]);
     }
 
     public function testValidationSuccess()
     {
-        $response = $this->json('POST', '/api/v1/features', [
+        $response = $this->json('POST', '/api/v1/categories', [
             'name' => ''
         ]);
 
@@ -38,20 +38,20 @@ class FeatureControllerTest extends TestCase
 
     public function testUpdateSuccess()
     {
-        $response = $this->json('PUT', '/api/v1/features/1', [
-            'name' => 'Memória de 60GB'
+        $response = $this->json('PUT', '/api/v1/categories/1', [
+            'name' => 'Celular Smartphone'
         ]);
 
         $response
             ->assertStatus(HttpStatus::HTTP_OK)
             ->assertJson([
-                'message' => 'Característica do produto atualizada com sucesso!'
+                'message' => 'Categoria atualizada com sucesso!'
             ]);
     }
 
     public function testListSuccess()
     {
-        $response = $this->json('GET', '/api/v1/features');
+        $response = $this->json('GET', '/api/v1/categories');
 
         $response
             ->assertStatus(HttpStatus::HTTP_OK)
@@ -59,8 +59,8 @@ class FeatureControllerTest extends TestCase
                 'data' => [
                     [
                         'id' => 1,
-                        'name' => 'Memória de 60GB',
-                        'description' => 'Memória de smartphone'
+                        'name' => 'Celular Smartphone',
+                        'description' => 'Todos os tipos de celular'
                     ],
                 ]
             ]);
