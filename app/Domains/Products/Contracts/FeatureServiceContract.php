@@ -35,4 +35,12 @@ interface FeatureServiceContract
      * @return mixed
      */
     public function find($id);
+
+    /**
+     * Service delete record.
+     *
+     * @param  string|int $id
+     * @return bool|null
+     */
+    public function delete($id);
 }

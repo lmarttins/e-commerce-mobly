@@ -111,4 +111,23 @@ class FeatureController extends ApiController
             );
         }
     }
+
+    /**
+     * @param  string|int $id
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function destroy($id)
+    {
+        try {
+            $this->service->delete($id);
+
+            return $this->response()->withSuccess(
+                'Característica removida com sucesso!'
+            );
+        } catch (\Exception $e) {
+            return $this->response()->withError(
+                'Não foi possível remover a característica.'
+            );
+        }
+    }
 }

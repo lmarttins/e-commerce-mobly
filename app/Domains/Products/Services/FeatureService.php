@@ -60,4 +60,15 @@ class FeatureService implements FeatureServiceContract
     {
         return $this->repository->find($id);
     }
+
+    /**
+     * Service delete resource.
+     *
+     * @param  int|string $id
+     * @return bool|null
+     */
+    public function delete($id)
+    {
+        return $this->repository->delete($id);
+    }
 }

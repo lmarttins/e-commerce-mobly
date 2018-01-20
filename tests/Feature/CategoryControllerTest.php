@@ -3,10 +3,14 @@
 namespace Tests\Feature;
 
 use Tests\TestCase;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Symfony\Component\HttpFoundation\Response as HttpStatus;
+use EcommerceMobly\Domains\Products\Models\Category;
 
 class CategoryControllerTest extends TestCase
 {
+    use RefreshDatabase;
+
     public function testStoreSuccess()
     {
         $response = $this->json('POST', '/api/v1/categories', [
@@ -38,7 +42,11 @@ class CategoryControllerTest extends TestCase
 
     public function testUpdateSuccess()
     {
-        $response = $this->json('PUT', '/api/v1/categories/1', [
+        $category = factory(Category::class)->create([
+            'name' => 'Celular Smartphone'
+        ]);
+
+        $response = $this->json('PUT', '/api/v1/categories/' . $category->id, [
             'name' => 'Celular Smartphone'
         ]);
 
@@ -51,6 +59,11 @@ class CategoryControllerTest extends TestCase
 
     public function testListSuccess()
     {
+        factory(Category::class)->create([
+            'name' => 'Celular smartphone',
+            'description' => 'Todos os tipos de celular'
+        ]);
+
         $response = $this->json('GET', '/api/v1/categories');
 
         $response
@@ -59,7 +72,7 @@ class CategoryControllerTest extends TestCase
                 'data' => [
                     [
                         'id' => 1,
-                        'name' => 'Celular Smartphone',
+                        'name' => 'Celular smartphone',
                         'description' => 'Todos os tipos de celular'
                     ],
                 ]
@@ -68,7 +81,12 @@ class CategoryControllerTest extends TestCase
 
     public function testShowSuccess()
     {
-        $response = $this->json('GET', '/api/v1/categories/1');
+        $category = factory(Category::class)->create([
+            'name' => 'Celular Smartphone',
+            'description' => 'Todos os tipos de celular'
+        ]);
+
+        $response = $this->json('GET', '/api/v1/categories/' . $category->id);
 
         $response
             ->assertStatus(HttpStatus::HTTP_OK)
@@ -83,7 +101,12 @@ class CategoryControllerTest extends TestCase
 
     public function testDestroySuccess()
     {
-        $response = $this->json('DELETE', '/api/v1/categories/1');
+        $category = factory(Category::class)->create([
+            'name' => 'Celular Smartphone',
+            'description' => 'Todos os tipos de celular'
+        ]);
+
+        $response = $this->json('DELETE', '/api/v1/categories/' . $category->id);
 
         $response
             ->assertStatus(HttpStatus::HTTP_OK)
