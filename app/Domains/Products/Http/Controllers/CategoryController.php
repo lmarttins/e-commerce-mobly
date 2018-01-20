@@ -2,63 +2,65 @@
 
 namespace EcommerceMobly\Domains\Products\Http\Controllers;
 
-use EcommerceMobly\Domains\Products\Contracts\ProductServiceContract;
-use EcommerceMobly\Domains\Products\Exceptions\ProductNotCreateException;
-use EcommerceMobly\Domains\Products\Http\Resources\ProductResource;
+use EcommerceMobly\Domains\Products\Contracts\CategoryServiceContract;
+use EcommerceMobly\Domains\Products\Http\Resources\CategoryResource;
 use EcommerceMobly\Support\Http\Controllers\ApiController;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 
-class ProductController extends ApiController
+class CategoryController extends ApiController
 {
+    /**
+     * @var CategoryServiceContract
+     */
     private $service;
 
-    public function __construct(ProductServiceContract $service)
+    /**
+     * CategoryController constructor.
+     * @param CategoryServiceContract $service
+     */
+    public function __construct(CategoryServiceContract $service)
     {
         $this->service = $service;
     }
 
     /**
+     * List resources.
+     *
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function index()
     {
-        return ProductResource::collection($this->service->paginate());
+        return CategoryResource::collection($this->service->paginate());
     }
 
     /**
      * Store resource.
      *
      * @param  Request $request
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return mixed
      */
     public function store(Request $request)
     {
         try {
             $this->validate($request, [
-                'name'  => 'required',
-                'price' => 'required',
+                'name' => 'required'
             ],[
-                'name.required'  => 'Nome obrigatório.',
-                'price.required' => 'Preço obrigatório.',
+                'name.required' => 'Nome obrigatório.'
             ]);
 
             $this->service->create($request->all());
 
             return $this->response()->withSuccess(
-                'Produto criado com sucesso!'
+                'Categoria criada com sucesso!'
             );
         } catch (ValidationException $e) {
             return $this->response()->withUnprocessableEntity(
                 $e->errors()
             );
-        } catch (ProductNotCreateException $e) {
-            return $this->response()->withError(
-                'Não foi possível criar o produto.'
-            );
         } catch (\Exception $e) {
             return $this->response()->withError(
-                'Ocorreu um problema ao processar a criação do produto.'
+                'Ocorreu um erro ao criar a categoria.'
             );
         }
     }
@@ -74,17 +76,15 @@ class ProductController extends ApiController
     {
         try {
             $this->validate($request, [
-                'name'  => 'required',
-                'price' => 'required',
+                'name' => 'required'
             ],[
-                'name.required'  => 'Nome obrigatório.',
-                'price.required' => 'Preço obrigatório.',
+                'name.required' => 'Nome obrigatório.'
             ]);
 
             $this->service->update($id, $request->all());
 
             return $this->response()->withSuccess(
-                'Produto atualizado com sucesso!'
+                'Categoria atualizada com sucesso!'
             );
         } catch (ValidationException $e) {
             return $this->response()->withUnprocessableEntity(
@@ -92,24 +92,22 @@ class ProductController extends ApiController
             );
         } catch (\Exception $e) {
             return $this->response()->withError(
-                'Ocorreu um erro ao atualizar o produto.'
+                'Ocorreu um erro ao atualizar a categoria.'
             );
         }
     }
 
     /**
-     * Show resource.
-     *
      * @param  string|int $id
-     * @return ProductResource|\Symfony\Component\HttpFoundation\Response
+     * @return CategoryResource|\Symfony\Component\HttpFoundation\Response
      */
     public function show($id)
     {
         try {
-            return new ProductResource($this->service->find($id));
+            return new CategoryResource($this->service->find($id));
         } catch (\Exception $e) {
             return $this->response()->withNotFound(
-                'Não foi possível encontrar o produto.'
+                'Não foi possível encontrar a categoria.'
             );
         }
     }
@@ -124,11 +122,11 @@ class ProductController extends ApiController
             $this->service->delete($id);
 
             return $this->response()->withSuccess(
-                'Produto excluído com sucesso!'
+                'Categoria excluir com sucesso!'
             );
         } catch (\Exception $e) {
             return $this->response()->withError(
-                'Não foi possível excluir o produto.'
+                'Não foi possível excluir a categoria.'
             );
         }
     }

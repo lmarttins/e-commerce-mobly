@@ -11,7 +11,7 @@ use EcommerceMobly\Domains\Products\Http\Resources\FeatureResource;
 class FeatureController extends ApiController
 {
     /**
-     * @var FeatureRepositoryContract
+     * @var FeatureServiceContract
      */
     private $service;
 
@@ -93,6 +93,40 @@ class FeatureController extends ApiController
         } catch (\Exception $e) {
             return $this->response()->withError(
                 'Ocorreu um erro ao atualizar a característica.'
+            );
+        }
+    }
+
+    /**
+     * @param  string|int $id
+     * @return FeatureResource|\Symfony\Component\HttpFoundation\Response
+     */
+    public function show($id)
+    {
+        try {
+            return new FeatureResource($this->service->find($id));
+        } catch (\Exception $e) {
+            return $this->response()->withNotFound(
+                'Não foi possível encontrar a característica.'
+            );
+        }
+    }
+
+    /**
+     * @param  string|int $id
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function destroy($id)
+    {
+        try {
+            $this->service->delete($id);
+
+            return $this->response()->withSuccess(
+                'Característica excluída com sucesso!'
+            );
+        } catch (\Exception $e) {
+            return $this->response()->withError(
+                'Não foi possível excluir a característica.'
             );
         }
     }

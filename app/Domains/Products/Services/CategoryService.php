@@ -2,23 +2,23 @@
 
 namespace EcommerceMobly\Domains\Products\Services;
 
-use EcommerceMobly\Domains\Products\Contracts\FeatureRepositoryContract;
-use EcommerceMobly\Domains\Products\Contracts\FeatureServiceContract;
+use EcommerceMobly\Domains\Products\Contracts\CategoryRepositoryContract;
+use EcommerceMobly\Domains\Products\Contracts\CategoryServiceContract;
 
-class FeatureService implements FeatureServiceContract
+class CategoryService implements CategoryServiceContract
 {
     /**
-     * @var FeatureRepositoryContract
+     * @var CategoryRepositoryContract
      */
     private $repository;
 
-    public function __construct(FeatureRepositoryContract $repository)
+    public function __construct(CategoryRepositoryContract $repository)
     {
         $this->repository = $repository;
     }
 
     /**
-     * Service create Feature record.
+     * Service create Category record.
      *
      * @param  array $data
      * @return mixed
@@ -29,7 +29,7 @@ class FeatureService implements FeatureServiceContract
     }
 
     /**
-     * Service update Feature record.
+     * Service update Category record.
      *
      * @param  $id
      * @param  array $data
@@ -51,10 +51,10 @@ class FeatureService implements FeatureServiceContract
     }
 
     /**
-     * Service find Feature record.
+     * Service find Category.
      *
      * @param int|string $id
-     * @return \EcommerceMobly\Domains\Products\Models\Feature
+     * @return \EcommerceMobly\Domains\Products\Models\Category
      */
     public function find($id)
     {
@@ -65,7 +65,7 @@ class FeatureService implements FeatureServiceContract
      * Service delete resource.
      *
      * @param  int|string $id
-     * @return bool|null
+     * @return mixed
      */
     public function delete($id)
     {

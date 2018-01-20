@@ -5,6 +5,7 @@ namespace EcommerceMobly\Domains\Products\Models\Traits;
 use EcommerceMobly\Domains\Files\Models\File;
 use EcommerceMobly\Domains\Products\Models\Category;
 use EcommerceMobly\Domains\Products\Models\Characteristic;
+use EcommerceMobly\Domains\Products\Models\Feature;
 
 /**
  * Trait ProductRelationship
@@ -37,8 +38,8 @@ trait ProductRelationship
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function characteristics()
+    public function features()
     {
-        return $this->belongsToMany(Characteristic::class);
+        return $this->belongsToMany(Feature::class);
     }
 }

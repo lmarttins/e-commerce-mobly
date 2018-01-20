@@ -2,10 +2,10 @@
 
 namespace EcommerceMobly\Domains\Products\Contracts;
 
-interface FeatureServiceContract
+interface ProductRepositoryContract
 {
     /**
-     * Service create Feature record.
+     * Create record.
      *
      * @param  array $data
      * @return mixed
@@ -13,34 +13,34 @@ interface FeatureServiceContract
     public function create(array $data = []);
 
     /**
-     * Service update Feature record.
+     * Update record.
      *
-     * @param  string|int $id
      * @param  array $data
+     * @param  $id
      * @return mixed
      */
     public function update($id, array $data = []);
 
     /**
-     * Service create pagination.
+     * Create pagination.
      *
      * @return mixed
      */
     public function paginate();
 
     /**
-     * Service find Feature record.
+     * Find record.
      *
      * @param  string|int $id
-     * @return mixed
+     * @return \EcommerceMobly\Domains\Products\Models\Product
      */
     public function find($id);
 
     /**
-     * Service delete record.
+     * Delete record.
      *
      * @param  string|int $id
-     * @return bool|null
+     * @return mixed
      */
     public function delete($id);
 }

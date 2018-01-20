@@ -67,8 +67,35 @@ abstract class Repository
         return $model->update($data);
     }
 
+    /**
+     * Pagination collection records.
+     *
+     * @return mixed
+     */
     public function paginate()
     {
         return app()->make($this->modelClass)->paginate();
+    }
+
+    /**
+     * Find record.
+     *
+     * @param  string|int $id
+     * @return \Illuminate\Database\Eloquent\Model
+     */
+    public function find($id)
+    {
+        return app()->make($this->modelClass)->find($id);
+    }
+
+    /**
+     * Delete record.
+     *
+     * @param  string|int $id
+     * @return bool|null
+     */
+    public function delete($id)
+    {
+        return $this->find($id)->delete();
     }
 }
