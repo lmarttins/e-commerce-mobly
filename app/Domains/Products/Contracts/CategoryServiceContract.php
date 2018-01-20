@@ -35,4 +35,12 @@ interface CategoryServiceContract
      * @return \EcommerceMobly\Domains\Products\Models\Category
      */
     public function find($id);
+
+    /**
+     * Service delete record.
+     *
+     * @param  string|int $id
+     * @return bool|null
+     */
+    public function delete($id);
 }

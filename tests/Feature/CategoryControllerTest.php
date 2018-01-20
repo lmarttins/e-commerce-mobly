@@ -80,4 +80,15 @@ class CategoryControllerTest extends TestCase
                 ]
             ]);
     }
+
+    public function testDestroySuccess()
+    {
+        $response = $this->json('DELETE', '/api/v1/categories/1');
+
+        $response
+            ->assertStatus(HttpStatus::HTTP_OK)
+            ->assertJson([
+                'message' => 'Categoria removida com sucesso!'
+            ]);
+    }
 }

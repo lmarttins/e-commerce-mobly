@@ -60,4 +60,15 @@ class CategoryService implements CategoryServiceContract
     {
         return $this->repository->find($id);
     }
+
+    /**
+     * Service delete resource.
+     *
+     * @param  int|string $id
+     * @return mixed
+     */
+    public function delete($id)
+    {
+        return $this->repository->delete($id);
+    }
 }

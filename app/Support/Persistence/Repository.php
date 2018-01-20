@@ -87,4 +87,15 @@ abstract class Repository
     {
         return app()->make($this->modelClass)->find($id);
     }
+
+    /**
+     * Delete record.
+     *
+     * @param  string|int $id
+     * @return bool|null
+     */
+    public function delete($id)
+    {
+        return $this->find($id)->delete();
+    }
 }

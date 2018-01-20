@@ -35,4 +35,12 @@ interface CategoryRepositoryContract
      * @return \EcommerceMobly\Domains\Products\Models\Category
      */
     public function find($id);
+
+    /**
+     * Delete record.
+     *
+     * @param  string|int $id
+     * @return mixed
+     */
+    public function delete($id);
 }
