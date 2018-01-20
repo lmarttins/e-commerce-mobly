@@ -122,11 +122,11 @@ class CategoryController extends ApiController
             $this->service->delete($id);
 
             return $this->response()->withSuccess(
-                'Categoria removida com sucesso!'
+                'Categoria excluir com sucesso!'
             );
         } catch (\Exception $e) {
             return $this->response()->withError(
-                'Não foi possível remover a categoria.'
+                'Não foi possível excluir a categoria.'
             );
         }
     }

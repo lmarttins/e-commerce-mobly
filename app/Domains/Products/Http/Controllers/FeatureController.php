@@ -122,11 +122,11 @@ class FeatureController extends ApiController
             $this->service->delete($id);
 
             return $this->response()->withSuccess(
-                'Característica removida com sucesso!'
+                'Característica excluída com sucesso!'
             );
         } catch (\Exception $e) {
             return $this->response()->withError(
-                'Não foi possível remover a característica.'
+                'Não foi possível excluir a característica.'
             );
         }
     }
