@@ -11,14 +11,23 @@ use Illuminate\Validation\ValidationException;
 
 class ProductController extends ApiController
 {
+    /**
+     * @var ProductServiceContract
+     */
     private $service;
 
+    /**
+     * ProductController constructor.
+     * @param ProductServiceContract $service
+     */
     public function __construct(ProductServiceContract $service)
     {
         $this->service = $service;
     }
 
     /**
+     * List resources.
+     *
      * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function index()
