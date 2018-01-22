@@ -3,6 +3,7 @@
 namespace EcommerceMobly\Domains\Products\Http\Controllers;
 
 use EcommerceMobly\Domains\Products\Contracts\OrderServiceContract;
+use EcommerceMobly\Domains\Products\Http\Resources\OrderResource;
 use EcommerceMobly\Support\Http\Controllers\ApiController;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
@@ -21,6 +22,16 @@ class OrderController extends ApiController
     public function __construct(OrderServiceContract $service)
     {
         $this->service = $service;
+    }
+
+    /**
+     * List resources.
+     *
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     */
+    public function index()
+    {
+        return OrderResource::collection($this->service->paginate());
     }
 
     /**

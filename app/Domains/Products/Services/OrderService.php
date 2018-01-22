@@ -76,7 +76,7 @@ class OrderService implements OrderServiceContract
      */
     public function update($id, array $data = [])
     {
-        return $this->repository->update($id, $data);
+        return $this->orderRepository->update($id, $data);
     }
 
     /**
@@ -86,7 +86,7 @@ class OrderService implements OrderServiceContract
      */
     public function paginate()
     {
-        return $this->repository->paginate();
+        return $this->orderRepository->paginate();
     }
 
     /**
@@ -97,7 +97,7 @@ class OrderService implements OrderServiceContract
      */
     public function find($id)
     {
-        return $this->repository->find($id);
+        return $this->orderRepository->find($id);
     }
 
     /**
@@ -108,21 +108,6 @@ class OrderService implements OrderServiceContract
      */
     public function delete($id)
     {
-        return $this->repository->delete($id);
-    }
-
-    /**
-     * Service upload image.
-     *
-     * @param UploadedFile $file
-     * @param $id
-     */
-    public function saveImage(UploadedFile $file, $id)
-    {
-        $image = [
-            'image' => $file->store('product/images')
-        ];
-
-        $this->repository->update($id, $image);
+        return $this->orderRepository->delete($id);
     }
 }

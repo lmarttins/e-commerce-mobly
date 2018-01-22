@@ -15,7 +15,8 @@ class ProductTableSeeder extends Seeder
         $product = Product::create([
             'name' => 'Iphone 8',
             'description' => 'iPhone 8 Cinza Espacial 64GB Tela 4.7',
-            'price' => 3.239
+            'price' => 3.239,
+            'image' => 'iphone.jpg'
         ]);
 
         $product->categories()->attach([1, 2]);
@@ -24,7 +25,8 @@ class ProductTableSeeder extends Seeder
         $product = Product::create([
             'name' => 'Smartphone Lg Nexus',
             'description' => 'Smartphone Lg Nexus 5x Tela 5.2 32gb Branco',
-            'price' => 1.359
+            'price' => 1.359,
+            'image' => 'nexus.png'
         ]);
 
         $product->categories()->attach([1, 2]);
@@ -33,7 +35,8 @@ class ProductTableSeeder extends Seeder
         $product = Product::create([
             'name' => 'Violão Takamine',
             'description' => 'Violão GD11MCE Mogno TAKAMINE',
-            'price' => 1.359
+            'price' => 1.359,
+            'image' => 'violao.jpg'
         ]);
 
         $product->categories()->attach([3]);
