@@ -58,3 +58,9 @@ Após rodar o *docker-compose up -d* acesse o container e execute os *Comandos p
 # acessar o container
 docker exec -it ecommerce-mobly-api /bin/bash
 ```
+
+Rodar os testes:
+``` bash
+# na raiz do projeto
+vendor/bin/phpunit
+```
