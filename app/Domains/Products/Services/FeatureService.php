@@ -40,8 +40,35 @@ class FeatureService implements FeatureServiceContract
         return $this->repository->update($id, $data);
     }
 
+    /**
+     * Service create pagination.
+     *
+     * @return mixed
+     */
     public function paginate()
     {
         return $this->repository->paginate();
+    }
+
+    /**
+     * Service find Feature record.
+     *
+     * @param int|string $id
+     * @return \EcommerceMobly\Domains\Products\Models\Feature
+     */
+    public function find($id)
+    {
+        return $this->repository->find($id);
+    }
+
+    /**
+     * Service delete resource.
+     *
+     * @param  int|string $id
+     * @return bool|null
+     */
+    public function delete($id)
+    {
+        return $this->repository->delete($id);
     }
 }

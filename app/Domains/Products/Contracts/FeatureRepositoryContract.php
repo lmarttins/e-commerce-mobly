@@ -21,5 +21,26 @@ interface FeatureRepositoryContract
      */
     public function update($id, array $data = []);
 
+    /**
+     * Create pagination.
+     *
+     * @return mixed
+     */
     public function paginate();
+
+    /**
+     * Find record.
+     *
+     * @param  string|int $id
+     * @return \EcommerceMobly\Domains\Products\Models\Feature
+     */
+    public function find($id);
+
+    /**
+     * Delete record.
+     *
+     * @param  string|int $id
+     * @return mixed
+     */
+    public function delete($id);
 }

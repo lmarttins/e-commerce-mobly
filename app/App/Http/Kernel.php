@@ -19,6 +19,7 @@ class Kernel extends HttpKernel
         \EcommerceMobly\App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         \EcommerceMobly\App\Http\Middleware\TrustProxies::class,
+        \Barryvdh\Cors\HandleCors::class,
     ];
 
     /**

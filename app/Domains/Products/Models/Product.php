@@ -12,4 +12,10 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     use ProductRelationship;
+
+    protected $fillable = [
+        'name',
+        'description',
+        'price',
+    ];
 }

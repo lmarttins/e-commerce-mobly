@@ -15,13 +15,11 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('file_id')->unsigned()->nullable();
             $table->string('name');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->double('price');
+            $table->string('image')->nullable();
             $table->timestamps();
-
-            $table->foreign('file_id')->references('id')->on('files');
         });
     }
 

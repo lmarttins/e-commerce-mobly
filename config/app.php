@@ -165,6 +165,11 @@ return [
         Illuminate\View\ViewServiceProvider::class,
 
         /*
+         * Package Service Providers...
+         */
+        Barryvdh\Cors\ServiceProvider::class,
+
+        /*
          * Domain Service Providers...
          */
         EcommerceMobly\Domains\Users\Providers\DomainServiceProvider::class,
