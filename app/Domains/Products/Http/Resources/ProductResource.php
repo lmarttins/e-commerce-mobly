@@ -19,7 +19,10 @@ class ProductResource extends Resource
             'name'        => $this->name,
             'description' => $this->description,
             'price'       => $this->price,
-            'image'       => $this->image
+            'image'       => $this->image,
+            'amount'      => 0,
+            'stock'       => 30,
+            'total'       => 0
         ];
     }
 }
