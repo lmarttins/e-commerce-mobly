@@ -3,20 +3,20 @@ version: '2'
 # Named volumes
 volumes:
   # MySQL Data
-  e-commerce-mobly-mysql-data:
+  ecommerce-mobly-mysql-data:
     driver: local
 
   # Redis Data
-  e-commerce-mobly-redis-data:
+  ecommerce-mobly-redis-data:
     driver: local
 
 services:
   # MySQL (5.7)
   mysql:
     image: ambientum/mysql:5.7
-    container_name: e-commerce-mobly-mysql
+    container_name: ecommerce-mobly-mysql
     volumes:
-      - e-commerce-mobly-mysql-data:/var/lib/mysql
+      - ecommerce-mobly-mysql-data:/var/lib/mysql
     ports:
       - "3307:3306"
     environment:
@@ -28,7 +28,7 @@ services:
   # PHP (with Nginx)
   api:
     image: ambientum/php:7.0-nginx
-    container_name: e-commerce-mobly-api
+    container_name: ecommerce-mobly-api
     volumes:
       - .:/var/www/app
     ports:
